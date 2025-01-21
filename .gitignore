@@ -2,3 +2,4 @@
 .pem
 credenciais-aws.txt
 .terraform
+.tfstate
