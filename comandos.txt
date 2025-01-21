@@ -1,0 +1,11 @@
+documentacao oficial 
+https://registry.terraform.io/browse/modules
+https://registry.terraform.io/browse/providers
+https://developer.hashicorp.com/terraform/language
+
+terraform providers ( lista os providers q serao necessarios utilizar no codigo ) 
+terraform init ( comando para iniciar e baixar os providers ) 
+terraform validate ( valida se a configuracao esta valida do codigo )
+terraform plan
+terraform destroy
+terraform fmt ( comando para formatar o arquivos do terrform )
