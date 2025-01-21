@@ -6,6 +6,11 @@ https://developer.hashicorp.com/terraform/language
 terraform providers ( lista os providers q serao necessarios utilizar no codigo ) 
 terraform init ( comando para iniciar e baixar os providers ) 
 terraform validate ( valida se a configuracao esta valida do codigo )
-terraform plan
-terraform destroy
+terraform plan -out plan.out ( salva um binario chamado plan.out com o plano do codigo )
+terraform show plan.out ( vai ler o arquivo criado anteriormente )
+terraform destroy ( destroi o codigo criado )
 terraform fmt ( comando para formatar o arquivos do terrform )
+terraform apply ( vai aplicar o codigo )
+terraform apply -destroy ( vai destruir o q havia sido criado )
+terraform apply -auto-approve ( vai mosgrar o plano na tela mas ja vai dar procedimento da criacao do codigo )
+terraform apply plan.out ( ele vai aplicar o plan criado anteriormente )
