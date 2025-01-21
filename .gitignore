@@ -2,4 +2,6 @@
 .pem
 credenciais-aws.txt
 .terraform
-.tfstate
+*.tfstate*
+*.lock.hcl
+*.out
