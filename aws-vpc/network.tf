@@ -39,6 +39,7 @@ resource "aws_route_table_association" "rta" {
   subnet_id      = aws_subnet.subnet.id
   route_table_id = aws_route_table.route_table.id
 }
+
 resource "aws_security_group" "security_group" {
   name        = "security-group-terraform"
   description = "Permitir acesso na porta 22"
