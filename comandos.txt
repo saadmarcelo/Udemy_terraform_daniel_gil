@@ -16,3 +16,27 @@ terraform apply -auto-approve ( vai mosgrar o plano na tela mas ja vai dar proce
 terraform apply plan.out ( ele vai aplicar o plan criado anteriormente )
 terraform output ( vai mostrar todos os outputs deployados )
 terraform output -raw Nome_output ( vai mostrar o valor somente do output selecionado )
+terraform show plan.out ( vai mostrar o resultado do plano )
+terraform show ( vai mostrar de forma legivel as informações do objetos criados )
+terrform state list ( lista os recursos que estao no state)
+
+caso queria mudar o nome de um recurso sem destruir e recriar o recurso 
+vamos mudar o nome bucket_1 para bucket_um na pastas show-state-import/bucket.tf
+terraform state mv aws_s3_bucket.bucket_1 aws_s3_bucket.um  
+
+terraform state pull ( baixa do remote state )
+terraform state pull > state.tfstate
+
+
+terraform state push -force state.tfstate ( vai subir para o remote state e sobrescrever pelo remote state que haviamos salvo localmente e forçar )
+
+terraform state replace-provider registry.terraform.io/hashicorp/aws registry.terraform.io/hashicorp/aws-v2 ( vai mudar no tfstate o provider )
+
+terraform state show aws_s3_bucket.bucket_2 ( mostra as informações somente do objeto mencionado )
+
+caso queira remover do state um recurso mas nao apagar ele da aws podemos fazer o seguinte
+remover do show-state-import/bucket.tf o resource bucket_1
+e apagar do state
+terraform state rm aws_s3_bucket.bucket_um 
+
+isso vai remover do state e quando formos dar o terraform plan ( o recurso na aws nao será destruido )
