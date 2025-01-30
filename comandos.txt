@@ -40,3 +40,10 @@ e apagar do state
 terraform state rm aws_s3_bucket.bucket_um 
 
 isso vai remover do state e quando formos dar o terraform plan ( o recurso na aws nao será destruido )
+
+terraform import (importa para o tfstate um recurso ja criado na aws, é necessario q ja tenha o codigo de como criar o recurso importado no codigo )
+
+terraform import aws_s3_bucket.bucket_um marcelosaad-terraform-commands-1 ( nome do recuros importado e o nome do bucket )
+
+terraform init -reconfigure ( criar um novo backend zerado )
+terraform force-unlock ID ( id do lock bloqueado )
