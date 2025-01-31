@@ -8,14 +8,16 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "marcelosaad-remote-state"
-    key    = "aws-vm/terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "marcelosaad-remote-state"
+    key     = "aws-vm/terraform.tfstate"
+    region  = "us-east-1"
+    profile = "saad.ti.dev"
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  profile = "saad.ti.dev"
+  region  = "us-east-1"
   default_tags {
     tags = {
       owner      = "MarceloSaad"
@@ -27,9 +29,10 @@ provider "aws" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "marcelosaad-remote-state"
-    key    = "aws-vpc/terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "marcelosaad-remote-state"
+    key     = "aws-vpc/terraform.tfstate"
+    region  = "us-east-1"
+    profile = "saad.ti.dev"
   }
 }
 
