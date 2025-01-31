@@ -24,7 +24,6 @@ resource "aws_instance" "vm" {
   }
 
   provisioner "remote-exec" {
-
     inline = [
       "echo subnet_id: ${data.terraform_remote_state.vpc.outputs.subnet_id} >> /tmp/network_info.txt",
       "echo security_group_id: ${data.terraform_remote_state.vpc.outputs.security_group_id} >> /tmp/network_info.txt",
@@ -32,9 +31,15 @@ resource "aws_instance" "vm" {
   }
 
   provisioner "file" {
-    source      = "/.test.txt"
+    source      = "./teste.txt"
     destination = "/tmp/exemplo.txt"
   }
+
+  provisioner "file" {
+    content     = "ami used: ${self.ami}"
+    destination = "/tmp/ami.txt"
+  }
+
   tags = {
     Name = "vm-terraform"
   }
