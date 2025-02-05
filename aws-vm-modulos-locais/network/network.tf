@@ -61,6 +61,6 @@ resource "aws_security_group" "security_group" {
   }
 
   tags = {
-    Name = "security-group-terrafom"
+    Name = "security-group-${var.environment}"
   }
 }
