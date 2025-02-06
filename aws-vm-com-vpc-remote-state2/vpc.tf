@@ -48,20 +48,8 @@ resource "aws_security_group" "Allow_ssh" {
   tags = {
     Name = "allow_ssh"
   }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
+
 resource "aws_security_group" "allow_port80" {
   name        = "allow_port80"
   description = "Allow port 80 inbound traffic and all outbound traffic"
@@ -70,17 +58,50 @@ resource "aws_security_group" "allow_port80" {
   tags = {
     Name = "allow_port80"
   }
+}
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_vpc_security_group_egress_rule" "egress_0" {
+  security_group_id = aws_security_group.Allow_ssh.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 0
+  ip_protocol = "-1"
+  to_port     = 0
+
+  tags = {
+    Name = "egress 0"
   }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+}
+
+resource "aws_vpc_security_group_ingress_rule" "ingress_22" {
+  security_group_id = aws_security_group.Allow_ssh.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  to_port     = 22
+  ip_protocol = "tcp"
+
+  tags = {
+    Name = "Ingress 22"
   }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "ingress_80" {
+  security_group_id = aws_security_group.allow_port80.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  to_port     = 80
+  ip_protocol = "tcp"
+
+  tags = {
+    Name = "Ingress 80"
+  }
+}
+
+resource "aws_eip" "iep" {
+  depends_on = [aws_internet_gateway.gw]
+  domain     = "vpc"
+  instance   = aws_instance.vm.id
+
 }
