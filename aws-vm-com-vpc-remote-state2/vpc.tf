@@ -103,5 +103,4 @@ resource "aws_eip" "iep" {
   depends_on = [aws_internet_gateway.gw]
   domain     = "vpc"
   instance   = aws_instance.vm.id
-
 }
