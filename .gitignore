@@ -6,3 +6,4 @@ credenciais-aws.txt
 *.lock.hcl
 *.out
 *key*
+*.tfvars
