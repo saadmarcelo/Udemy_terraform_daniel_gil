@@ -1,11 +1,11 @@
 variable "environment" {
   description = "Ambiente criado"
-  default     = "prod"
+  default     = "stg"
 }
 
 variable "instance_type" {
   description = "Tipo de instancia na criada"
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 variable "ami" {

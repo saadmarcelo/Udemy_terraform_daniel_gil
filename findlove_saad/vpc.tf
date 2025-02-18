@@ -14,6 +14,7 @@ resource "aws_subnet" "vpc_subnet" {
   }
 }
 
+
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.vpc.id
 
@@ -50,13 +51,13 @@ resource "aws_security_group" "Allow_ssh" {
   }
 }
 
-resource "aws_security_group" "allow_port80" {
+resource "aws_security_group" "allow_port8080" {
   name        = "allow_port80-${var.environment}"
-  description = "Allow port 80 inbound traffic and all outbound traffic"
+  description = "Allow port 8080 inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "allow_port80-${var.environment}"
+    Name = "allow_port8080-${var.environment}"
   }
 }
 
@@ -86,20 +87,20 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_22" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ingress_80" {
-  security_group_id = aws_security_group.allow_port80.id
+resource "aws_vpc_security_group_ingress_rule" "ingress_8080" {
+  security_group_id = aws_security_group.allow_port8080.id
 
   cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 80
-  to_port     = 80
+  from_port   = 8080
+  to_port     = 8080
   ip_protocol = "tcp"
 
   tags = {
-    Name = "Ingress 80-${var.environment}"
+    Name = "Ingress 8080-${var.environment}"
   }
 }
 
-resource "aws_eip" "iep" {
+resource "aws_eip" "eip" {
   depends_on = [aws_internet_gateway.gw]
   domain     = "vpc"
   instance   = aws_instance.vm.id

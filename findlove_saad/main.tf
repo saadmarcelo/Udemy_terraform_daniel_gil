@@ -10,14 +10,14 @@ terraform {
     bucket  = "marcelosaad-remote-state"
     key     = "aws-findlove/terraform.tfstate"
     region  = "us-east-1"
-    profile = "saad.ti.dev"
+    profile = "find-love"
   }
 }
 
 provider "aws" {
   # Configuration options
   region  = "us-east-1"
-  profile = "saad.ti.dev"
+  profile = "find.love"
   default_tags {
     tags = {
       owner      = "Findlove"
